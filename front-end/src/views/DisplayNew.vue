@@ -64,13 +64,13 @@ const queues = ref([])
 const lastCall = ref(null);
 
 
-    onMounted(async () =>{
+onMounted(async () =>{
         const res = await api.get('/queues/display')
         queues.value = res.data
         socket.on('queue:new', (queue) =>{
             queues.value.push(queue)
         })
-    })
+})
 
     socket.on('queue:called', (updated) => {
         const index = queues.value.findIndex(q => q._id === updated._id)
