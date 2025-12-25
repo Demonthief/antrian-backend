@@ -12,6 +12,14 @@ const io = new Server(server, {
     }
 })
 
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err)
+})
+
+process.on('unhandledRejection', (reason) => {
+  console.error('UNHANDLED REJECTION:', reason)
+})
+
 io.on('connection', (socket) => {
     console.log('Client Connected :', socket.id)
 })
